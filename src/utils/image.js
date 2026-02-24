@@ -1,0 +1,15 @@
+export const images = {
+  addItems: require('../assets/images/add-to-cart.png'),
+  todo: require('../assets/images/to-do-list.png'),
+  items: require('../assets/images/shopping-bag.png'),
+  calander: require('../assets/images/day-31.png'),
+  tool: require('../assets/images/tool.png'),
+  checked: require('../assets/images/checked.png'),
+  pending: require('../assets/images/deadline.png'),
+  edit: require('../assets/images/edit.png'),
+  bin: require('../assets/images/bin.png'),
+  add: require('../assets/images/add.png'),
+  logout: require('../assets/images/logout.png'),
+  api: require('../assets/images/api.png'),
+
+};
