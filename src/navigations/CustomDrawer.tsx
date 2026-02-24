@@ -13,7 +13,6 @@ export function CustomDrawerContent(props: any) {
   const tabState = drawerState.routes[drawerState.index]?.state;
   const activeTab = tabState?.routeNames[tabState.index] ?? 'Home';
   const dispatch = useDispatch();
-
   const onPressLogout = () => {
     dispatch(logoutUser());
   };

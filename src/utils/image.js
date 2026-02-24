@@ -11,5 +11,6 @@ export const images = {
   add: require('../assets/images/add.png'),
   logout: require('../assets/images/logout.png'),
   api: require('../assets/images/api.png'),
+  menu: require('../assets/images/menu.png'),
 
 };
