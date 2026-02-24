@@ -15,6 +15,8 @@ export const commentsfetchdata = createAsyncThunk(
       'https://jsonplaceholder.typicode.com/posts/3/comments',
     );
     const data = await response.json();
+    console.log(data);
+
     return data;
   },
 );
