@@ -1,13 +1,12 @@
 import React from 'react';
 import { View, Text, StyleSheet, Image, Pressable } from 'react-native';
-import { getHeaderTitle } from '@react-navigation/elements';
-import { DrawerToggleButton } from '@react-navigation/drawer';
+import { getHeaderTitle, HeaderTitleProps } from '@react-navigation/elements';
 import { rh, rw } from '../utils/responsive';
 import { images } from '../utils/image';
 import { rf } from '../utils/fonts';
 import colors from '../utils/color';
-
-const CustomHeader = ({ route, options, navigation }: any) => {
+import { DrawerHeaderProps } from '@react-navigation/drawer';
+const CustomHeader = ({ route, options, navigation }: DrawerHeaderProps) => {
   const title = getHeaderTitle(options, route.name);
 
   const onPressAddItems = () => {
@@ -16,14 +15,12 @@ const CustomHeader = ({ route, options, navigation }: any) => {
     });
   };
   return (
-    <View style={[styles.headerContainer, options.headerStyle]}>
-      <View style={styles.left}>
-        <DrawerToggleButton tintColor={colors.white} />
-      </View>
+    <View style={[styles.headerContainer]}>
+      <Pressable style={styles.left} onPress={() => navigation.openDrawer()}>
+        <Image source={images.menu} style={styles.icon} />
+      </Pressable>
 
-      <Text style={[styles.headerTitle, options.headerTitleStyle]}>
-        {title}
-      </Text>
+      <Text style={[styles.headerTitle]}>{title}</Text>
       <Pressable style={styles.pressable} onPress={() => onPressAddItems()}>
         <Image source={images.add} style={styles.icon} resizeMode="contain" />
       </Pressable>

@@ -5,8 +5,9 @@ import { CustomDrawerContent } from './CustomDrawer';
 import { getFocusedRouteNameFromRoute } from '@react-navigation/native';
 import { rw } from '../utils/responsive';
 import CustomHeader from './CustomHeader';
+import { DrawerRootScreen } from '../utils/types';
 
-const Drawer = createDrawerNavigator();
+const Drawer = createDrawerNavigator<DrawerRootScreen>();
 
 export default function DrawerNavigation() {
   return (

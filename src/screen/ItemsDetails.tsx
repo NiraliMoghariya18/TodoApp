@@ -5,9 +5,23 @@ import moment from 'moment';
 import { rh, rw } from '../utils/responsive';
 import { rf } from '../utils/fonts';
 import colors from '../utils/color';
+import { useRoute } from '@react-navigation/native';
+import { TodoItem } from './AddItemsScreen';
 
-const ItemsDetails = ({ route }: any) => {
-  const { item } = route.params;
+interface ItemsDetails {
+  assignedTo: string;
+  category: string;
+  createdAt: string;
+  description: string;
+  editedAt: string;
+  id: string;
+  isCompleted: boolean;
+  title: string;
+  userId: string;
+}
+const ItemsDetails = () => {
+  const route = useRoute();
+  const { item } = route?.params as { item: TodoItem };
   return (
     <ScrollView contentContainerStyle={styles.container}>
       <Card style={styles.card}>

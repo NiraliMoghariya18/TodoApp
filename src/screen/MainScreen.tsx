@@ -5,8 +5,13 @@ import { rh, rw } from '../utils/responsive';
 import { rf } from '../utils/fonts';
 import Button from '../components/Button';
 import colors from '../utils/color';
+import { useNavigation } from '@react-navigation/native';
+import { StackNavigationProp } from '@react-navigation/stack';
+import { StackRootScreen } from '../utils/types';
 
-const MainScreen = ({ navigation }: any) => {
+const MainScreen = () => {
+  const navigation = useNavigation<StackNavigationProp<StackRootScreen>>();
+
   const onregister = () => {
     navigation.navigate('RegistrationScreen');
   };

@@ -4,11 +4,12 @@ import { View, Text, TouchableOpacity, StyleSheet, Image } from 'react-native';
 import { rw, rh } from '../utils/responsive';
 import { images } from '../utils/image';
 import colors from '../utils/color';
+import { BottomTabBarProps } from '@react-navigation/bottom-tabs';
 
-const CustomBottomTabbar = ({ state, navigation }: any) => {
+const CustomBottomTabbar = ({ state, navigation }: BottomTabBarProps) => {
   return (
     <View style={styles.container}>
-      {state.routes.map((route: any, index: number) => {
+      {state.routes.map((route, index) => {
         const isFocused = state.index === index;
 
         let iconSource;

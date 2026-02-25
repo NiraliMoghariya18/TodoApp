@@ -12,6 +12,7 @@ import colors from '../utils/color';
 import { useDispatch, useSelector } from 'react-redux';
 import { AppDispatch, RootState } from '../redux/store';
 import { commentsfetchdata, fetchdata } from '../redux/slice/apiSlice';
+import { FetchData } from './Fetchdata';
 
 const ApiCallScreen = () => {
   //   const [data, setData] = useState([]);
@@ -119,6 +120,8 @@ const ApiCallScreen = () => {
           keyExtractor={item => item.id.toString()}
           scrollEnabled={false}
         />
+        <Text>CreateAction and CreateReducer use for Api Call</Text>
+        <FetchData />
       </ScrollView>
     </View>
   );

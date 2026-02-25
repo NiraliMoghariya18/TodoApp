@@ -26,11 +26,13 @@ import { combineReducers } from 'redux';
 import todoReducer from './slice/todoSlice';
 import authReducer from './slice/authSlice';
 import apiReducer from './slice/apiSlice';
+import dataReducer from './reducers/apiReducer';
 
 const rootReducer = combineReducers({
   todo: todoReducer,
   auth: authReducer,
   api: apiReducer,
+  dataReducer: dataReducer,
 });
 
 const persistConfigData = {
@@ -38,7 +40,10 @@ const persistConfigData = {
   storage: AsyncStorage,
 };
 
-const persistedReducer = persistReducer(persistConfigData, rootReducer);
+const persistedReducer = persistReducer<any, any>(
+  persistConfigData,
+  rootReducer,
+);
 
 export const store = configureStore({
   reducer: persistedReducer,

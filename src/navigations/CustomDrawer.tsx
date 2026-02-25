@@ -1,6 +1,9 @@
 import React from 'react';
 import { View, Text, StyleSheet, TouchableOpacity, Image } from 'react-native';
-import { DrawerContentScrollView } from '@react-navigation/drawer';
+import {
+  DrawerContentComponentProps,
+  DrawerContentScrollView,
+} from '@react-navigation/drawer';
 import { rh, rw } from '../utils/responsive';
 import { rf } from '../utils/fonts';
 import { images } from '../utils/image';
@@ -8,12 +11,12 @@ import colors from '../utils/color';
 import { useDispatch } from 'react-redux';
 import { logoutUser } from '../redux/slice/authSlice';
 
-export function CustomDrawerContent(props: any) {
+export function CustomDrawerContent(props: DrawerContentComponentProps) {
   const drawerState = props.state;
   const tabState = drawerState.routes[drawerState.index]?.state;
-  const activeTab = tabState?.routeNames[tabState.index] ?? 'Home';
+  const activeTab = tabState?.routeNames?.[tabState?.index ?? 0];
+  console.log(activeTab, '===========');
   const dispatch = useDispatch();
-
   const onPressLogout = () => {
     dispatch(logoutUser());
   };
@@ -37,7 +40,7 @@ export function CustomDrawerContent(props: any) {
   return (
     <DrawerContentScrollView {...props} contentContainerStyle={{ flex: 1 }}>
       <View style={styles.header}>
-        <Image source={images.todo} style={styles.todolist} />
+        <Image source={images.todo} style={styles.todoList} />
         <Text style={styles.appName}>ToDoApp</Text>
       </View>
 
@@ -89,7 +92,7 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
   },
-  todolist: {
+  todoList: {
     width: rw(12),
     height: rw(12),
     marginRight: rw(4),

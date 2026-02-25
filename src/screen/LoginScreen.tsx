@@ -12,22 +12,24 @@ import { rw, rh } from '../utils/responsive';
 import { rf } from '../utils/fonts';
 import CustomTextInput from '../components/CustomTextInput';
 import Button from '../components/Button';
-import { loginUser } from '../redux/slice/authSlice';
+import { loginUser, User } from '../redux/slice/authSlice';
 import { RootState } from '../redux/store';
 import colors from '../utils/color';
+import { TodoItem } from './AddItemsScreen';
 
-const LoginScreen = ({ navigation }: any) => {
+interface FormError {
+  email?: string;
+  password?: string;
+}
+const LoginScreen = () => {
   const dispatch = useDispatch();
   const { users } = useSelector((state: RootState) => state.auth);
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const [errors, setErrors] = useState<{
-    email?: string;
-    password?: string;
-  }>({});
+  const [errors, setErrors] = useState<FormError>({});
 
   const validate = () => {
-    const newErrors: any = {};
+    const newErrors: FormError = {};
 
     if (!email.trim()) {
       newErrors.email = 'Email is required';
@@ -49,7 +51,7 @@ const LoginScreen = ({ navigation }: any) => {
   const onLogin = () => {
     if (!validate()) return;
 
-    const foundUser = users.find(u => u.email === email);
+    const foundUser = users.find((u: User) => u.email === email);
 
     if (!foundUser) {
       setErrors({ email: 'User not registered' });
