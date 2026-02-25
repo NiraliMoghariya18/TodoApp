@@ -51,6 +51,7 @@ const AddItemsScreen = ({ route, navigation }: any) => {
   const [date, setDate] = useState(new Date());
   const [open, setOpen] = useState(false);
   const { currentUser } = useSelector((state: RootState) => state.auth);
+  const dispatch = useDispatch();
 
   const categories = [
     { label: 'Work', value: 'Work' },
@@ -84,6 +85,7 @@ const AddItemsScreen = ({ route, navigation }: any) => {
   const isEdit = route?.params?.isEdit;
   const editItem = route?.params?.item;
 
+  console.log('editItem :>> ', editItem);
   useEffect(() => {
     if (isEdit && editItem) {
       setTitle(editItem.title);
@@ -91,9 +93,9 @@ const AddItemsScreen = ({ route, navigation }: any) => {
       setCategory(editItem.category);
       setAssignedTo(editItem.assignedTo);
       setIsCompleted(editItem.isCompleted);
-      if (editItem.createdAt) {
-        setDate(new Date(editItem.createdAt));
-      }
+      // if (editItem.createdAt) {
+      setDate(new Date(editItem.createdAt));
+      // }
     }
   }, [isEdit, editItem]);
 
@@ -110,8 +112,6 @@ const AddItemsScreen = ({ route, navigation }: any) => {
       };
     }, []),
   );
-
-  const dispatch = useDispatch();
 
   const onSave = () => {
     if (!validate() || !currentUser?.id) return;

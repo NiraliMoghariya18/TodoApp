@@ -36,7 +36,7 @@ export function CustomDrawerContent(props: any) {
   return (
     <DrawerContentScrollView {...props} contentContainerStyle={{ flex: 1 }}>
       <View style={styles.header}>
-        <Image source={images.todo} style={styles.todolist} />
+        <Image source={images.todo} style={styles.todoList} />
         <Text style={styles.appName}>ToDoApp</Text>
       </View>
 
@@ -88,7 +88,7 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
   },
-  todolist: {
+  todoList: {
     width: rw(12),
     height: rw(12),
     marginRight: rw(4),

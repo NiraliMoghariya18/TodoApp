@@ -79,8 +79,8 @@ const ItemsScreen = ({ navigation }: any) => {
   };
 
   const totalCount = userTodos.length;
-  const completedCount = userTodos.filter(i => i.isCompleted).length;
-  const pendingCount = userTodos.filter(i => !i.isCompleted).length;
+  const completedCount = userTodos.filter((i: any) => i.isCompleted).length;
+  const pendingCount = userTodos.filter((i: any) => !i.isCompleted).length;
 
   const FILTER_CARDS = [
     {
@@ -103,13 +103,13 @@ const ItemsScreen = ({ navigation }: any) => {
     },
   ];
 
-  const filteredItems = userTodos.filter(item => {
+  const filteredItems = userTodos.filter((item: any) => {
     if (filter === 'COMPLETED') return item.isCompleted;
     if (filter === 'PENDING') return !item.isCompleted;
     return true;
   });
 
-  const searchedItems = filteredItems.filter(item => {
+  const searchedItems = filteredItems.filter((item: any) => {
     const query = searchText.trim().toLowerCase();
     if (!query) return true;
     return (

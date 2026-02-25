@@ -6,18 +6,25 @@ import {
   View,
   TextStyle,
   StyleProp,
+  ViewStyle,
 } from 'react-native';
 import colors from '../utils/color';
 
 interface ButtonProps {
   title: string;
-  onPress?: () => void;
-  buttonStyle?: object;
+  onPress: () => void;
+  buttonStyle?: StyleProp<ViewStyle>;
   textStyle?: TextStyle;
   style?: StyleProp<TextStyle>;
 }
 
-const Button = ({ title, onPress, textStyle, style }: ButtonProps) => {
+const Button = ({
+  title,
+  onPress,
+  textStyle,
+  style,
+  buttonStyle,
+}: ButtonProps) => {
   return (
     <TouchableOpacity
       onPress={onPress}

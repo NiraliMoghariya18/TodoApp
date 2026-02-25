@@ -49,7 +49,7 @@ const LoginScreen = ({ navigation }: any) => {
   const onLogin = () => {
     if (!validate()) return;
 
-    const foundUser = users.find(u => u.email === email);
+    const foundUser = users.find((u: any) => u.email === email);
 
     if (!foundUser) {
       setErrors({ email: 'User not registered' });

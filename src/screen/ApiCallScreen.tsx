@@ -121,6 +121,7 @@ const ApiCallScreen = () => {
           keyExtractor={item => item.id.toString()}
           scrollEnabled={false}
         />
+        <Text>CreateAction and CreateReducer use for Api Call</Text>
         <FetchData />
       </ScrollView>
     </View>
