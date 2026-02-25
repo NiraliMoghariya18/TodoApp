@@ -17,9 +17,11 @@ import { RootState } from '../redux/store';
 import { removeTodo, setTodos } from '../redux/slice/todoSlice';
 import { images } from '../utils/image';
 import colors from '../utils/color';
+import { StaticScreenProps } from '@react-navigation/native';
 
 type FilterType = 'ALL' | 'COMPLETED' | 'PENDING';
 
+type Props = StaticScreenProps<{}>;
 const ItemsScreen = ({ navigation }: any) => {
   const [filter, setFilter] = useState<FilterType>('ALL');
   const [searchText, setSearchText] = useState('');
@@ -31,7 +33,7 @@ const ItemsScreen = ({ navigation }: any) => {
   const { currentUser } = useSelector((state: RootState) => state.auth);
 
   const userTodos = items.filter(
-    (item: any) => item.userId === currentUser?.id,
+    (item: TodoItem) => item.userId === currentUser?.id,
   );
 
   //   const userTodos = useMemo(() => {
@@ -79,8 +81,11 @@ const ItemsScreen = ({ navigation }: any) => {
   };
 
   const totalCount = userTodos.length;
-  const completedCount = userTodos.filter((i: any) => i.isCompleted).length;
-  const pendingCount = userTodos.filter((i: any) => !i.isCompleted).length;
+  const completedCount = userTodos.filter(
+    (i: TodoItem) => i.isCompleted,
+  ).length;
+
+  const pendingCount = userTodos.filter((i: TodoItem) => !i.isCompleted).length;
 
   const FILTER_CARDS = [
     {
@@ -103,13 +108,13 @@ const ItemsScreen = ({ navigation }: any) => {
     },
   ];
 
-  const filteredItems = userTodos.filter((item: any) => {
+  const filteredItems = userTodos.filter((item: TodoItem) => {
     if (filter === 'COMPLETED') return item.isCompleted;
     if (filter === 'PENDING') return !item.isCompleted;
     return true;
   });
 
-  const searchedItems = filteredItems.filter((item: any) => {
+  const searchedItems = filteredItems.filter((item: TodoItem) => {
     const query = searchText.trim().toLowerCase();
     if (!query) return true;
     return (

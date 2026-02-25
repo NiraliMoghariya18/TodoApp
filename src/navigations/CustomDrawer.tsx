@@ -1,6 +1,9 @@
 import React from 'react';
 import { View, Text, StyleSheet, TouchableOpacity, Image } from 'react-native';
-import { DrawerContentScrollView } from '@react-navigation/drawer';
+import {
+  DrawerContentComponentProps,
+  DrawerContentScrollView,
+} from '@react-navigation/drawer';
 import { rh, rw } from '../utils/responsive';
 import { rf } from '../utils/fonts';
 import { images } from '../utils/image';

@@ -32,8 +32,10 @@ export const fetchData = () => {
       );
       const data = await response.json();
       dispatch(fetchDataSuccess(data));
-    } catch (error: any) {
-      dispatch(fetchDataFailure(error.message));
+    } catch (error: unknown) {
+      if (error instanceof Error) {
+        dispatch(fetchDataFailure('Something went wrong'));
+      }
     }
   };
 };

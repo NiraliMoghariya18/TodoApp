@@ -16,6 +16,12 @@ import { registerUser } from '../redux/slice/authSlice';
 import moment from 'moment';
 import colors from '../utils/color';
 
+interface FormErrors {
+  email?: string;
+  password?: string;
+  fullName?: string;
+  confirmPassword?: string;
+}
 const RegistrationScreen = ({ navigation }: any) => {
   const dispatch = useDispatch();
 
@@ -23,15 +29,10 @@ const RegistrationScreen = ({ navigation }: any) => {
   const [password, setPassword] = useState('');
   const [fullName, setFullName] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
-  const [errors, setErrors] = useState<{
-    email?: string;
-    password?: string;
-    fullName?: string;
-    confirmPassword?: string;
-  }>({});
+  const [errors, setErrors] = useState<FormErrors>({});
 
   const validate = () => {
-    const newErrors: any = {};
+    const newErrors: FormErrors = {};
 
     if (!email.trim()) {
       newErrors.email = 'Email is required';

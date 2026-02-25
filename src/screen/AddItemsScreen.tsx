@@ -34,6 +34,12 @@ export interface TodoItem {
   editedAt: string | null;
   userId?: string;
 }
+interface formError {
+  title?: string;
+  category?: string;
+  description?: string;
+  assignedTo?: string;
+}
 
 const AddItemsScreen = ({ route, navigation }: any) => {
   const [isCompleted, setIsCompleted] = useState(false);
@@ -42,16 +48,16 @@ const AddItemsScreen = ({ route, navigation }: any) => {
   const [description, setDescription] = useState('');
   const [assignedTo, setAssignedTo] = useState('');
   const [isFocus, setIsFocus] = useState(false);
-  const [errors, setErrors] = useState<{
-    title?: string;
-    category?: string;
-    description?: string;
-    assignedTo?: string;
-  }>({});
+  const [errors, setErrors] = useState<formError>({});
   const [date, setDate] = useState(new Date());
   const [open, setOpen] = useState(false);
   const { currentUser } = useSelector((state: RootState) => state.auth);
   const dispatch = useDispatch();
+
+  type DropdownItem = {
+    label: string;
+    value: string;
+  };
 
   const categories = [
     { label: 'Work', value: 'Work' },
@@ -60,7 +66,7 @@ const AddItemsScreen = ({ route, navigation }: any) => {
   ];
 
   const validate = () => {
-    const newErrors: any = {};
+    const newErrors: formError = {};
 
     if (!title.trim()) {
       newErrors.title = 'Title is required';
@@ -152,7 +158,7 @@ const AddItemsScreen = ({ route, navigation }: any) => {
     }
   };
 
-  const onChangeDropDown = (item: any) => {
+  const onChangeDropDown = (item: DropdownItem) => {
     setCategory(item.value);
     if (errors.category) {
       setErrors(prev => ({ ...prev, category: '' }));

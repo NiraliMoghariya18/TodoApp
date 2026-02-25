@@ -18,13 +18,7 @@ interface ButtonProps {
   style?: StyleProp<TextStyle>;
 }
 
-const Button = ({
-  title,
-  onPress,
-  textStyle,
-  style,
-  buttonStyle,
-}: ButtonProps) => {
+const Button = ({ title, onPress, textStyle, style }: ButtonProps) => {
   return (
     <TouchableOpacity
       onPress={onPress}

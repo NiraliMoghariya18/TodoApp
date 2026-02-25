@@ -1,11 +1,12 @@
 import React from 'react';
 import { View, Text, StyleSheet, Image, Pressable } from 'react-native';
-import { getHeaderTitle } from '@react-navigation/elements';
+import { getHeaderTitle, HeaderTitleProps } from '@react-navigation/elements';
 import { rh, rw } from '../utils/responsive';
 import { images } from '../utils/image';
 import { rf } from '../utils/fonts';
 import colors from '../utils/color';
-const CustomHeader = ({ route, options, navigation }: any) => {
+import { DrawerHeaderProps } from '@react-navigation/drawer';
+const CustomHeader = ({ route, options, navigation }: DrawerHeaderProps) => {
   const title = getHeaderTitle(options, route.name);
 
   const onPressAddItems = () => {
