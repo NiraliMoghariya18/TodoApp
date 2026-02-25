@@ -17,12 +17,23 @@ import { RootState } from '../redux/store';
 import { removeTodo, setTodos } from '../redux/slice/todoSlice';
 import { images } from '../utils/image';
 import colors from '../utils/color';
-import { StaticScreenProps } from '@react-navigation/native';
+import {
+  CompositeNavigationProp,
+  useNavigation,
+} from '@react-navigation/native';
+import { StackRootScreen, TabRootScreen } from '../utils/types';
+import { BottomTabNavigationProp } from '@react-navigation/bottom-tabs';
+import { StackNavigationProp } from '@react-navigation/stack';
 
 type FilterType = 'ALL' | 'COMPLETED' | 'PENDING';
 
-type Props = StaticScreenProps<{}>;
-const ItemsScreen = ({ navigation }: any) => {
+type CombinedNavigationProp = CompositeNavigationProp<
+  BottomTabNavigationProp<TabRootScreen>,
+  StackNavigationProp<StackRootScreen>
+>;
+const ItemsScreen = () => {
+  const navigation = useNavigation<CombinedNavigationProp>();
+
   const [filter, setFilter] = useState<FilterType>('ALL');
   const [searchText, setSearchText] = useState('');
   const [isLoaded, setIsLoaded] = useState(false);

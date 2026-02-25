@@ -6,7 +6,12 @@ const initialState = {
 
 interface Action {
   type: string;
-  payload?: any;
+  payload?: {
+    userId: number;
+    id: number;
+    name: string;
+    body: string;
+  };
 }
 const dataReducer = (state = initialState, action: Action) => {
   switch (action.type) {

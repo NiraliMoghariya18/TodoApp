@@ -4,8 +4,9 @@ import ItemsScreen from '../screen/ItemsScreen';
 import AddItemsScreen from '../screen/AddItemsScreen';
 import CustomBottomTabbar from './CustomBottomTabbar';
 import ApiCallScreen from '../screen/ApiCallScreen';
+import { TabRootScreen } from '../utils/types';
 
-const Tab = createBottomTabNavigator();
+const Tab = createBottomTabNavigator<TabRootScreen>();
 
 export default function TabNavigation() {
   return (

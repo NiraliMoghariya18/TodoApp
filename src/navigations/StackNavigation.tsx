@@ -8,8 +8,9 @@ import MainScreen from '../screen/MainScreen';
 import colors from '../utils/color';
 import { useSelector } from 'react-redux';
 import { RootState } from '../redux/store';
+import { StackRootScreen } from '../utils/types';
 
-const Stack = createStackNavigator();
+const Stack = createStackNavigator<StackRootScreen>();
 
 export default function StackNavigation() {
   const { isLoggedIn } = useSelector((state: RootState) => state.auth);

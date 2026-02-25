@@ -1,6 +1,10 @@
 import { useDispatch, useSelector } from 'react-redux';
 import { addTodo, updateTodo } from '../redux/slice/todoSlice';
-import { useFocusEffect } from '@react-navigation/native';
+import {
+  useFocusEffect,
+  useNavigation,
+  useRoute,
+} from '@react-navigation/native';
 import moment from 'moment';
 import React, { useCallback, useEffect, useState } from 'react';
 import {
@@ -41,7 +45,10 @@ interface formError {
   assignedTo?: string;
 }
 
-const AddItemsScreen = ({ route, navigation }: any) => {
+const AddItemsScreen = () => {
+  const route = useRoute();
+  const params = route.params as { isEdit: boolean; item: TodoItem };
+  const navigation = useNavigation();
   const [isCompleted, setIsCompleted] = useState(false);
   const [category, setCategory] = useState<string>('');
   const [title, setTitle] = useState('');
@@ -88,8 +95,8 @@ const AddItemsScreen = ({ route, navigation }: any) => {
     return Object.keys(newErrors).length === 0;
   };
 
-  const isEdit = route?.params?.isEdit;
-  const editItem = route?.params?.item;
+  const isEdit = params?.isEdit;
+  const editItem = params?.item;
 
   console.log('editItem :>> ', editItem);
   useEffect(() => {
@@ -142,7 +149,7 @@ const AddItemsScreen = ({ route, navigation }: any) => {
       dispatch(addTodo(newItem));
     }
 
-    navigation.navigate('Items');
+    navigation.navigate('Items' as never);
   };
 
   const onChangeTitle = (text: string) => {

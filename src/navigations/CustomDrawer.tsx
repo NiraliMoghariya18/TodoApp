@@ -11,10 +11,11 @@ import colors from '../utils/color';
 import { useDispatch } from 'react-redux';
 import { logoutUser } from '../redux/slice/authSlice';
 
-export function CustomDrawerContent(props: any) {
+export function CustomDrawerContent(props: DrawerContentComponentProps) {
   const drawerState = props.state;
   const tabState = drawerState.routes[drawerState.index]?.state;
-  const activeTab = tabState?.routeNames[tabState.index] ?? 'Home';
+  const activeTab = tabState?.routeNames?.[tabState?.index ?? 0];
+  console.log(activeTab, '===========');
   const dispatch = useDispatch();
   const onPressLogout = () => {
     dispatch(logoutUser());

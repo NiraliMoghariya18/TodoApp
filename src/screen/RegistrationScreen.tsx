@@ -15,6 +15,9 @@ import Button from '../components/Button';
 import { registerUser } from '../redux/slice/authSlice';
 import moment from 'moment';
 import colors from '../utils/color';
+import { useNavigation } from '@react-navigation/native';
+import { StackNavigationProp } from '@react-navigation/stack';
+import { StackRootScreen } from '../utils/types';
 
 interface FormErrors {
   email?: string;
@@ -22,9 +25,9 @@ interface FormErrors {
   fullName?: string;
   confirmPassword?: string;
 }
-const RegistrationScreen = ({ navigation }: any) => {
+const RegistrationScreen = () => {
   const dispatch = useDispatch();
-
+  const navigation = useNavigation<StackNavigationProp<StackRootScreen>>();
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [fullName, setFullName] = useState('');

@@ -12,7 +12,6 @@ import colors from '../utils/color';
 import { useDispatch, useSelector } from 'react-redux';
 import { AppDispatch, RootState } from '../redux/store';
 import { commentsfetchdata, fetchdata } from '../redux/slice/apiSlice';
-import { fetchData, FetchDataSuccessPayload } from '../redux/actions/apiAction';
 import { FetchData } from './Fetchdata';
 
 const ApiCallScreen = () => {
